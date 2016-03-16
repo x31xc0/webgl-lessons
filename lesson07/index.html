@@ -1,9 +1,9 @@
 <html>
 
 <head>
-<title>Learning WebGL &mdash; lesson 7</title>
+<title>WebGL Model Viewer</title>
 <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-
+<link rel="stylesheet" type"text/css" href="style.css">
 <script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
 <script type="text/javascript" src="webgl-utils.js"></script>
 
@@ -489,6 +489,7 @@
 
     function webGLStart() {
         var canvas = document.getElementById("lesson07-canvas");
+        canvas.width = window.innerWidth;
         initGL(canvas);
         initShaders();
         initBuffers();
@@ -504,23 +505,30 @@
     }
 
 </script>
-
+<script type="text/javascript">
+        function updateTextInput(val){
+            document.getElementById("rangeVal").innerHTML = val;   
+        }
+</script> 
+<script type="text/javascript">
+        function updateTextInput(id, val){
+            console.log(val);
+            document.getElementById(id).innerHTML = val;   
+        }
+</script>
 
 </head>
 
 
 <body onload="webGLStart();">
-    <a href="http://learningwebgl.com/blog/?p=684">&lt;&lt; Back to Lesson 7</a><br />
-
-    <canvas id="lesson07-canvas" style="border: none;" width="500" height="500"></canvas>
+    <canvas id="lesson07-canvas" style="border: none;" width="1000" height="500"></canvas>
 
     <br />
     <input type="checkbox" id="lighting" checked /> Use lighting<br/>
-    (Use cursor keys to spin the box and <code>Page Up</code>/<code>Page Down</code> to zoom out/in)
+   
 
     <br/>
     <h2>Directional light:</h2>
-
     <table style="border: 0; padding: 10px;">
         <tr>
             <td><b>Direction:</b>
@@ -530,9 +538,9 @@
         </tr>
         <tr>
             <td><b>Colour:</b>
-            <td>R: <input type="text" id="directionalR" value="0.8" />
-            <td>G: <input type="text" id="directionalG" value="0.8" />
-            <td>B: <input type="text" id="directionalB" value="0.8" />
+            <td>R<input id="directionalR" type="range" min="0" max="3" step="0.1" defaultValue="0.8" value="0.8" oninput="updateTextInput('rangeValR', this.value)"/><lable id="rangeValR">0.8</lable>
+            <td>G<input id="directionalG" type="range" min="0" max="3" step="0.1" defaultValue="0.8" value="0.8" oninput="updateTextInput('rangeValG', this.value)"/><lable id="rangeValG">0.8</lable>
+            <td>B<input id="directionalB" type="range" min="0" max="3" step="0.1" defaultValue="0.8" value="0.8" oninput="updateTextInput('rangeValB', this.value)"/><lable id="rangeValB">0.8</lable>
         </tr>
     </table>
 
@@ -546,7 +554,7 @@
         </tr>
     </table>
 
-    <a href="http://learningwebgl.com/blog/?p=684">&lt;&lt; Back to Lesson 7</a>
+  
 </body>
 
 </html>
